@@ -27,19 +27,18 @@ export class CrearEncuestaComponent {
     this.opciones.splice(index, 1);
   }
 
-  crearEncuesta() {
-    const encuesta = {
-      pregunta: this.pregunta,
-      tipo: this.tipo,
-      opciones: this.tipo === 'abierta' ? [] : this.opciones,
-      respuestas: [],
-      fecha: Date.now(), 
-      id: this.generarId()
-    };
+    crearEncuesta() {
+  const encuesta = {
+    pregunta: this.pregunta,
+    tipo: this.tipo,
+    opciones: this.tipo === 'abierta' ? [] : this.opciones,
+    fecha: Date.now()
+  };
 
-    const id = this.encuestaService.crearEncuesta(encuesta);
-    this.idGenerado = id;
-  }
+  const id = this.encuestaService.crearEncuesta(encuesta);
+  this.idGenerado = id;
+}
+
 
   generarId(): string {
   return Math.random().toString(36).substring(2, 9);
