@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { ResponderComponent } from './responder/responder.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearEncuestaComponent,
-    ResponderComponent
+    ResponderComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,

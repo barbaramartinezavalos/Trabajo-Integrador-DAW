@@ -1,0 +1,45 @@
+<div #exportarContainer>
+  <div *ngIf="encuesta; else error">
+    <h2>{{ encuesta.pregunta }}</h2>
+
+    <!-- Pregunta abierta -->
+    <div *ngIf="encuesta.tipo === 'abierta'">
+      <h4>Respuestas:</h4>
+      <ul>
+        <li *ngFor="let r of encuesta.respuestas">{{ r }}</li>
+      </ul>
+    </div>
+
+    <!-- Pregunta opción simple: gráfico circular -->
+    <div *ngIf="encuesta.tipo === 'opcion-simple'">
+      <canvas #grafico width="300" height="300"></canvas>
+      <ul>
+        <li *ngFor="let op of encuesta.opciones" [style.color]="colores[op]">
+          {{ op }} ({{ conteo[op] || 0 }})
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pregunta opción múltiple: barras -->
+    <div *ngIf="encuesta.tipo === 'opcion-multiple'">
+      <div *ngFor="let op of encuesta.opciones" class="barra-opcion">
+        <span class="texto">{{ op }}</span>
+        <div class="barra">
+          <div
+            class="relleno"
+            [style.width.%]="(conteo[op] || 0) / encuesta.respuestas.length * 100"
+          >
+            {{ conteo[op] || 0 }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exportar -->
+    <button (click)="exportarPDF()">📄 Exportar como PDF</button>
+  </div>
+</div>
+
+<ng-template #error>
+  <p style="color: red;">❌ Encuesta no encontrada</p>
+</ng-template>
