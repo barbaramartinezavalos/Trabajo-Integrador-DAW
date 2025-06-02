@@ -1,0 +1,17 @@
+<div class="contenedor">
+  <h2>📋 Encuestas disponibles</h2>
+
+  <div *ngIf="encuestas.length === 0">
+    <p>No hay encuestas creadas aún.</p>
+  </div>
+
+  <div *ngFor="let encuesta of encuestas" class="tarjeta">
+    <h3>{{ encuesta.pregunta }}</h3>
+    <p><strong>Tipo:</strong> {{ encuesta.tipo }}</p>
+
+    <div class="acciones">
+      <button (click)="responder(encuesta.id)">Responder</button>
+      <button (click)="estadisticas(encuesta.id)">Ver estadísticas</button>
+    </div>
+  </div>
+</div>

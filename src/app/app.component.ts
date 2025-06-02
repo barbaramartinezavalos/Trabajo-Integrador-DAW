@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'encuesta-angular19';
+  constructor(public router: Router) {}
+
+  mostrarBotonInicio(): boolean {
+    return this.router.url !== '/';
+  }
 }

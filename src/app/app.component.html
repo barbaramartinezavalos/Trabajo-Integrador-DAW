@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<router-outlet>
+  <div class="volver" *ngIf="mostrarBotonInicio()">
+  <button routerLink="/">🏠 Volver al inicio</button>
+</div>
+
+<router-outlet />
+
+

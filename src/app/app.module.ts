@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.component';
 import { ResponderComponent } from './responder/responder.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrearEncuestaComponent,
     ResponderComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

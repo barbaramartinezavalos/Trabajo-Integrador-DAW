@@ -1,0 +1,42 @@
+.contenedor {
+  max-width: 700px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.tarjeta {
+  background-color: #fff0fa;
+  border: 2px dashed #e3c3f3;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  box-shadow: 0 0 10px #eac6f8;
+}
+
+h2 {
+  color: #a94bc9;
+}
+
+h3 {
+  color: #c16fef;
+}
+
+.acciones {
+  margin-top: 1rem;
+
+  button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background-color: #d28ee6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #be6fd7;
+    }
+  }
+}

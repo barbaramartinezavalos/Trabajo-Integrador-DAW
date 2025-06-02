@@ -1,0 +1,23 @@
+.volver {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+
+  button {
+    background-color: #e5c4f3;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px #e5c4f3;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #c987e6;
+    }
+  }
+}
+
