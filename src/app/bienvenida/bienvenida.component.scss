@@ -1,0 +1,96 @@
+.fondo {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+.contenido {
+  max-width: 600px;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+    span {
+      color: #d896f8; // lila pastel
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    background-color: #f7c3e0; // rosado pastel
+    color: #3a2a3f;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: #f2a5cd;
+    }
+  }
+}
+
+.bienvenida-container {
+  height: 100vh;
+  background: url('/assets/bienvenida-estudiantes.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+
+  .contenido {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+    h1 {
+      font-size: 2.8rem;
+      color: #5d3a6f;
+
+      span {
+        color: #d896f8;
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #4a4a4a;
+    }
+
+    button {
+      margin-top: 2rem;
+      background-color: #f7c3e0;
+      color: #3a2a3f;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+
+      &:hover {
+        background-color: #f2a5cd;
+      }
+    }
+  }
+}

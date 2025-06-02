@@ -9,6 +9,7 @@ import { CrearEncuestaComponent } from './crear-encuesta/crear-encuesta.componen
 import { ResponderComponent } from './responder/responder.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InicioComponent } from './inicio/inicio.component';
     CrearEncuestaComponent,
     ResponderComponent,
     EstadisticasComponent,
-    InicioComponent
+    InicioComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,
