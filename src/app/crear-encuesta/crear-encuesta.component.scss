@@ -71,3 +71,35 @@ $border: #d5b0e7;
     margin-right: auto;
   }
 }
+
+.enlaces {
+  margin-top: 2rem;
+  background-color: #fdf4ff;
+  border: 1px dashed #d5b0e7;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #5e2e88;
+
+  code {
+    background-color: #fceaff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 0.2rem;
+  }
+
+  button {
+    margin-left: 0.5rem;
+    background-color: #d5b0e7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c48ad9;
+    }
+  }
+}
