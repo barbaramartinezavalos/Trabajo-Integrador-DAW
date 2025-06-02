@@ -21,5 +21,26 @@
     <button class="agregar" (click)="agregarOpcion()">+ Agregar opción</button>
   </div>
 
-  <button class="crear" (click)="crearEncuesta()">Crear Encuesta</button>
+  <button 
+  class="crear" (click)="crearEncuesta()">Crear Encuesta</button>
+        <div *ngIf="idGenerado" class="enlaces">
+  <p><strong>¡Encuesta creada!</strong></p>
+
+  <p>
+    📩 <strong>Responder:</strong><br />
+    <code>http://localhost:4200/responder/{{ idGenerado }}</code>
+    <button (click)="copiarAlPortapapeles('http://localhost:4200/responder/' + idGenerado)">
+      📋 Copiar
+    </button>
+  </p>
+
+  <p>
+    📊 <strong>Estadísticas:</strong><br />
+    <code>http://localhost:4200/estadisticas/{{ idGenerado }}</code>
+    <button (click)="copiarAlPortapapeles('http://localhost:4200/estadisticas/' + idGenerado)">
+      📋 Copiar
+    </button>
+  </p>
+</div>
+
 </div>
