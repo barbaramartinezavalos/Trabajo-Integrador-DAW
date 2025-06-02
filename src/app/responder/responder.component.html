@@ -1,0 +1,38 @@
+<div *ngIf="encuesta; else noExiste">
+  <h2>{{ encuesta.pregunta }}</h2>
+
+  <ng-container [ngSwitch]="encuesta.tipo">
+    <div *ngSwitchCase="'abierta'">
+      <textarea [(ngModel)]="respuesta" rows="4" cols="50"></textarea>
+    </div>
+
+    <div *ngSwitchCase="'opcion-simple'">
+      <label *ngFor="let op of encuesta.opciones">
+        <input
+          type="radio"
+          name="opcion"
+          [value]="op"
+          [(ngModel)]="respuesta"
+        />
+        {{ op }}
+      </label>
+    </div>
+
+    <div *ngSwitchCase="'opcion-multiple'">
+      <label *ngFor="let op of encuesta.opciones">
+        <input
+          type="checkbox"
+          [value]="op"
+          (change)="onCheckChange($event)"
+        />
+        {{ op }}
+      </label>
+    </div>
+  </ng-container>
+
+  <button (click)="enviarRespuesta()">Enviar Respuesta</button>
+</div>
+
+<ng-template #noExiste>
+  <p>Encuesta no encontrada</p>
+</ng-template>

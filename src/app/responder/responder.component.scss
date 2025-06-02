@@ -1,0 +1,30 @@
+h2 {
+  color: #a050b0;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid #d5b0e7;
+}
+
+button {
+  margin-top: 1rem;
+  background-color: #d5b0e7;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c48ad9;
+  }
+}
