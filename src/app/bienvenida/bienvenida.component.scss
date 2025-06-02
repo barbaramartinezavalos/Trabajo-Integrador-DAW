@@ -1,96 +1,95 @@
-.fondo {
+.contenedor-bienvenida {
+  position: relative;
+  width: 100%;
   height: 100vh;
+  background: linear-gradient(145deg, #fdfbfe, #f3e9fc);
+  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
-  color: white;
-  text-align: center;
-  padding: 2rem;
+  align-items: center;
+  flex-direction: column;
 }
 
-.contenido {
-  max-width: 600px;
+.estudiantes {
+  width: 400px;
+  max-width: 90%;
+  animation: fadeIn 1.5s ease-in-out;
+  z-index: 2;
+}
+
+.texto-bienvenida {
+  margin-top: 2rem;
+  text-align: center;
+  color: #4a1c6e;
+  z-index: 2;
 
   h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-
-    span {
-      color: #d896f8; // lila pastel
-    }
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 
   p {
     font-size: 1.2rem;
-    color: #ddd;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
-  button {
-    background-color: #f7c3e0; // rosado pastel
-    color: #3a2a3f;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
+  .boton-empezar {
+    background: #b073d8;
+    color: white;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    font-weight: bold;
+    border: none;
+    border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s ease;
+    transition: transform 0.3s;
+  }
 
-    &:hover {
-      background-color: #f2a5cd;
-    }
+  .boton-empezar:hover {
+    transform: scale(1.05);
   }
 }
 
-.bienvenida-container {
-  height: 100vh;
-  background: url('/assets/bienvenida-estudiantes.png') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
+.decoracion {
+  position: absolute;
+  width: 60px;
+  opacity: 0.9;
+}
 
-  .contenido {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 2rem 3rem;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+.book1 {
+  top: 10%;
+  left: 5%;
+  animation: flotar 4s ease-in-out infinite;
+}
 
-    h1 {
-      font-size: 2.8rem;
-      color: #5d3a6f;
+.book2 {
+  bottom: 15%;
+  right: 8%;
+  animation: flotar 5s ease-in-out infinite;
+}
 
-      span {
-        color: #d896f8;
-      }
-    }
+.lupa {
+  top: 20%;
+  right: 10%;
+  width: 50px;
+  animation: flotar 6s ease-in-out infinite;
+}
 
-    p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      color: #4a4a4a;
-    }
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
 
-    button {
-      margin-top: 2rem;
-      background-color: #f7c3e0;
-      color: #3a2a3f;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-
-      &:hover {
-        background-color: #f2a5cd;
-      }
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
