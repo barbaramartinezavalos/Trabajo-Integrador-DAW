@@ -1,0 +1,25 @@
+
+<div class="formulario">
+  <h2>Crear Encuesta</h2>
+
+  <label>Pregunta:</label>
+  <input [(ngModel)]="pregunta" type="text" placeholder="¿Cuál es tu pregunta?" />
+
+  <label>Tipo de pregunta:</label>
+  <select [(ngModel)]="tipo">
+    <option value="abierta">Abierta</option>
+    <option value="opcion-simple">Opción simple</option>
+    <option value="opcion-multiple">Opción múltiple</option>
+  </select>
+
+  <div *ngIf="tipo !== 'abierta'">
+    <label>Opciones:</label>
+    <div *ngFor="let opcion of opciones; let i = index" class="opcion">
+      <input [(ngModel)]="opciones[i]" type="text" placeholder="Opción {{ i + 1 }}" />
+      <button type="button" (click)="eliminarOpcion(i)">🗑️</button>
+    </div>
+    <button class="agregar" (click)="agregarOpcion()">+ Agregar opción</button>
+  </div>
+
+  <button class="crear" (click)="crearEncuesta()">Crear Encuesta</button>
+</div>
