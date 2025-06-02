@@ -8,6 +8,7 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'bienvenida', pathMatch: 'full' },
   { path: '', component: BienvenidaComponent },
   { path: '', redirectTo: 'crear', pathMatch: 'full' },
   { path: 'crear', component: CrearEncuestaComponent },
