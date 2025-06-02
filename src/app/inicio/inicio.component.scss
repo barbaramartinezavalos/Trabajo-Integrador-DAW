@@ -40,3 +40,23 @@ h3 {
     }
   }
 }
+
+.boton-crear {
+  margin-bottom: 2rem;
+  text-align: right;
+
+  button {
+    background-color: #ffd6ef;
+    color: #a33dbd;
+    font-weight: bold;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f3b9e4;
+    }
+  }
+}

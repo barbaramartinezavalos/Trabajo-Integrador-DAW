@@ -15,7 +15,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     const guardadas = localStorage.getItem('encuestas');
     if (guardadas) {
-      this.encuestas = JSON.parse(guardadas);
+      this.encuestas = JSON.parse(guardadas).sort((a: any, b: any) => b.fecha - a.fecha);
     }
   }
 
@@ -26,4 +26,13 @@ export class InicioComponent implements OnInit {
   estadisticas(id: string) {
     this.router.navigate(['/estadisticas', id]);
   }
+
+  filtro: string = '';
+
+encuestasFiltradas() {
+  return this.encuestas.filter(e =>
+    e.pregunta.toLowerCase().includes(this.filtro.toLowerCase())
+  );
+}
+
 }

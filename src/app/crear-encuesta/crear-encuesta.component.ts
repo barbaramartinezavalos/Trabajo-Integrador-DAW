@@ -31,16 +31,24 @@ export class CrearEncuestaComponent {
     const encuesta = {
       pregunta: this.pregunta,
       tipo: this.tipo,
-      opciones: this.tipo === 'abierta' ? [] : this.opciones
+      opciones: this.tipo === 'abierta' ? [] : this.opciones,
+      respuestas: [],
+      fecha: Date.now(), 
+      id: this.generarId()
     };
 
     const id = this.encuestaService.crearEncuesta(encuesta);
     this.idGenerado = id;
   }
 
+  generarId(): string {
+  return Math.random().toString(36).substring(2, 9);
+}
+
+
   copiarAlPortapapeles(texto: string) {
     navigator.clipboard.writeText(texto).then(() => {
-      alert('¡Enlace copiado al portapapeles! 📋');
+      alert('¡Enlace copiado al portapapeles!');
     });
   }
 }

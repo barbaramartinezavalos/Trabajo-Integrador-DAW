@@ -1,3 +1,7 @@
+<div class="boton-crear">
+  <button routerLink="/crear">Crear nueva encuesta</button>
+</div>
+
 <div class="contenedor">
   <h2>📋 Encuestas disponibles</h2>
 
@@ -5,7 +9,10 @@
     <p>No hay encuestas creadas aún.</p>
   </div>
 
-  <div *ngFor="let encuesta of encuestas" class="tarjeta">
+  <input type="text" [(ngModel)]="filtro" placeholder="Buscar encuesta..." class="buscador" />
+
+
+  <div *ngFor="let encuesta of encuestasFiltradas()" class="tarjeta">
     <h3>{{ encuesta.pregunta }}</h3>
     <p><strong>Tipo:</strong> {{ encuesta.tipo }}</p>
 
