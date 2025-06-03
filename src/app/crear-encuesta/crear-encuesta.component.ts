@@ -52,9 +52,13 @@ export class CrearEncuestaComponent {
 
   crearEncuesta() {
     const nuevaEncuesta = {
-      preguntas: this.preguntas,
-      fecha: Date.now()
-    };
+  preguntas: this.preguntas.map(p => ({
+    ...p,
+    respuestas: []
+  })),
+  fecha: Date.now()
+};
+
 
     const id = this.encuestaService.crearEncuesta(nuevaEncuesta);
     this.idGenerado = id;

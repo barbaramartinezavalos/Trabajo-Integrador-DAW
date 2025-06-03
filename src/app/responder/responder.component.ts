@@ -41,14 +41,23 @@ export class ResponderComponent implements OnInit {
   }
 
   enviarRespuesta() {
-    if (!this.encuesta?.id) {
-      alert('Encuesta no válida');
-      return;
-    }
-
-    this.encuestaService.responderEncuesta(this.encuesta.id, this.respuestas);
-    alert('¡Respuestas enviadas con éxito!');
-    this.respuestas = [];
+  if (!this.encuesta?.id) {
+    alert('Encuesta no válida');
+    return;
   }
+
+  // Asignar cada respuesta a su pregunta correspondiente
+  this.encuesta.preguntas.forEach((pregunta: any, index: number) => {
+    if (!pregunta.respuestas) {
+      pregunta.respuestas = [];
+    }
+    pregunta.respuestas.push(this.respuestas[index]);
+  });
+
+  this.encuestaService.actualizarEncuesta(this.encuesta);
+  alert('¡Respuestas registradas con éxito!');
+  this.respuestas = [];
+}
+
 }
 
