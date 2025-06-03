@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EncuestaService } from '../servicios/encuesta.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-responder',
@@ -14,7 +16,8 @@ export class ResponderComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private encuestaService: EncuestaService
+    private encuestaService: EncuestaService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,7 +49,6 @@ export class ResponderComponent implements OnInit {
     return;
   }
 
-  // Asignar cada respuesta a su pregunta correspondiente
   this.encuesta.preguntas.forEach((pregunta: any, index: number) => {
     if (!pregunta.respuestas) {
       pregunta.respuestas = [];
@@ -55,8 +57,11 @@ export class ResponderComponent implements OnInit {
   });
 
   this.encuestaService.actualizarEncuesta(this.encuesta);
-  alert('¡Respuestas registradas con éxito!');
   this.respuestas = [];
+  this.router.navigate(['/gracias']);
+
+  // Redirección después de responder
+  this.router.navigate(['/gracias']);
 }
 
 }

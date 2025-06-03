@@ -10,6 +10,7 @@ import { ResponderComponent } from './responder/responder.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { AgradecimientoComponent } from './agradecimiento/agradecimiento.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
     ResponderComponent,
     EstadisticasComponent,
     InicioComponent,
-    BienvenidaComponent
+    BienvenidaComponent,
+    AgradecimientoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+.agradecimiento {
+  text-align: center;
+  padding: 60px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #9c27b0;
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 20px;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #c2185b;
+  }
+}
