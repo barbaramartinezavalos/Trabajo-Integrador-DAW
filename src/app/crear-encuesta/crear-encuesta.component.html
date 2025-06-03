@@ -48,27 +48,3 @@
   </div>
 </div>
 
-
-<div *ngFor="let pregunta of preguntas; let i = index">
-  <input [(ngModel)]="pregunta.texto" placeholder="Escribe la pregunta" />
-  
-  <select [(ngModel)]="pregunta.tipo">
-    <option value="abierta">Abierta</option>
-    <option value="opcion-simple">Opción simple</option>
-    <option value="opcion-multiple">Opción múltiple</option>
-  </select>
-
-  <div *ngIf="pregunta.tipo !== 'abierta'">
-    <div *ngFor="let opcion of pregunta.opciones; let j = index">
-      <input [(ngModel)]="pregunta.opciones[j]" placeholder="Opción" />
-      <button (click)="eliminarOpcion(i, j)">❌</button>
-    </div>
-    <button (click)="agregarOpcion(i)">+ Opción</button>
-  </div>
-
-  <button (click)="eliminarPregunta(i)">Eliminar pregunta</button>
-  <hr />
-</div>
-
-<button (click)="agregarPregunta()">+ Agregar pregunta</button>
-

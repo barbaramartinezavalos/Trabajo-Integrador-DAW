@@ -12,19 +12,21 @@
 
       <!-- Opción simple -->
       <div *ngIf="pregunta.tipo === 'opcion-simple'">
-        <label *ngFor="let op of pregunta.opciones" class="opcion">
+        <div *ngFor="let op of pregunta.opciones" class="opcion alineada">
+          <span>{{ op }}</span>
           <input type="radio" [name]="'pregunta-' + i" [value]="op" [(ngModel)]="respuestas[i]" />
-          {{ op }}
-        </label>
+        </div>
       </div>
 
       <!-- Opción múltiple -->
       <div *ngIf="pregunta.tipo === 'opcion-multiple'">
-        <label *ngFor="let op of pregunta.opciones" class="opcion">
+        <div *ngFor="let op of pregunta.opciones" class="opcion alineada">
+          <span>{{ op }}</span>
           <input type="checkbox" [value]="op" (change)="onCheckChange($event, i)" />
-          {{ op }}
-        </label>
+        </div>
       </div>
+
+      <hr />
     </div>
 
     <button type="submit">Enviar Respuestas</button>
@@ -32,5 +34,6 @@
 </div>
 
 <ng-template #noExiste>
-  <p style="color: red;">Encuesta no encontrada</p>
+  <p style="color: red;">❌ Encuesta no encontrada</p>
 </ng-template>
+

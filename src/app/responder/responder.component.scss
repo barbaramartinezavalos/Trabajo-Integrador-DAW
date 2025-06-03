@@ -211,4 +211,17 @@ button.crear {
       background-color: #a55eb4;
     }
   }
+
+  .opcion.alineada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fceaff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #d33682;
+}
+
 }

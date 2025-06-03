@@ -21,8 +21,9 @@ ul {
 }
 
 li {
-  margin-bottom: 0.5rem;
+  font-size: 16px;
   font-weight: 500;
+  margin: 4px 0;
 }
 
 .barra-opcion {
@@ -83,3 +84,35 @@ p {
   font-weight: bold;
   margin-top: 1rem;
 }
+
+
+  .barra-opcion {
+    margin-bottom: 10px;
+  }
+
+  .barra {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    height: 25px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .relleno {
+    background-color: #e1b5f7;
+    height: 100%;
+    text-align: right;
+    padding-right: 10px;
+    color: #333;
+    font-weight: bold;
+    line-height: 25px;
+    border-radius: 10px;
+    transition: width 0.5s;
+  }
+
+  .texto {
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+  }
+

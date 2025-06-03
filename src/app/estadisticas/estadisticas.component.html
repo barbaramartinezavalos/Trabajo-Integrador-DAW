@@ -15,10 +15,15 @@
     <div *ngIf="pregunta.tipo === 'opcion-simple'">
       <canvas #grafico width="300" height="300"></canvas>
       <ul>
-        <li *ngFor="let op of pregunta.opciones" [style.color]="colores[op]">
-          {{ op }} ({{ conteo[i][op] || 0 }})
-        </li>
-      </ul>
+  <li *ngFor="let op of pregunta.opciones" [style.color]="colores[op]">
+    {{ op }} –
+    {{
+      ((conteo[i][op] || 0) / (pregunta.respuestas?.length || 1) * 100)
+        | number:'1.0-0'
+    }}%
+  </li>
+</ul>
+
     </div>
 
     <!-- Opción múltiple -->
@@ -30,7 +35,7 @@
             class="relleno"
             [style.width.%]="(conteo[i][op] || 0) / pregunta.respuestas.length * 100"
           >
-            {{ conteo[i][op] || 0 }}
+            {{ ((conteo[i][op] || 0) / pregunta.respuestas.length * 100) | number:'1.0-0' }}%
           </div>
         </div>
       </div>
