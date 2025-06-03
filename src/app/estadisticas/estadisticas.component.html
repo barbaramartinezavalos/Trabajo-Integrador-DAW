@@ -1,42 +1,43 @@
-<div #exportarContainer>
-  <div *ngIf="encuesta; else error">
-    <h2>{{ encuesta.pregunta }}</h2>
+    <div *ngIf="encuesta; else error">
+  <h2>Estadísticas de la encuesta</h2>
 
-    <!-- Pregunta abierta -->
-    <div *ngIf="encuesta.tipo === 'abierta'">
-      <h4>Respuestas:</h4>
+  <div *ngFor="let pregunta of encuesta.preguntas; let i = index" #exportarContainer>
+    <h3>{{ pregunta.texto }}</h3>
+
+    <!-- Abierta -->
+    <div *ngIf="pregunta.tipo === 'abierta'">
       <ul>
-        <li *ngFor="let r of encuesta.respuestas">{{ r }}</li>
+        <li *ngFor="let r of pregunta.respuestas">{{ r }}</li>
       </ul>
     </div>
 
-    <!-- Pregunta opción simple: gráfico circular -->
-    <div *ngIf="encuesta.tipo === 'opcion-simple'">
+    <!-- Opción simple -->
+    <div *ngIf="pregunta.tipo === 'opcion-simple'">
       <canvas #grafico width="300" height="300"></canvas>
       <ul>
-        <li *ngFor="let op of encuesta.opciones" [style.color]="colores[op]">
-          {{ op }} ({{ conteo[op] || 0 }})
+        <li *ngFor="let op of pregunta.opciones" [style.color]="colores[op]">
+          {{ op }} ({{ conteo[i][op] || 0 }})
         </li>
       </ul>
     </div>
 
-    <!-- Pregunta opción múltiple: barras -->
-    <div *ngIf="encuesta.tipo === 'opcion-multiple'">
-      <div *ngFor="let op of encuesta.opciones" class="barra-opcion">
+    <!-- Opción múltiple -->
+    <div *ngIf="pregunta.tipo === 'opcion-multiple'">
+      <div *ngFor="let op of pregunta.opciones" class="barra-opcion">
         <span class="texto">{{ op }}</span>
         <div class="barra">
           <div
             class="relleno"
-            [style.width.%]="(conteo[op] || 0) / encuesta.respuestas.length * 100"
+            [style.width.%]="(conteo[i][op] || 0) / pregunta.respuestas.length * 100"
           >
-            {{ conteo[op] || 0 }}
+            {{ conteo[i][op] || 0 }}
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Exportar -->
-    <button (click)="exportarPDF()">📄 Exportar como PDF</button>
+    <button (click)="exportarPDF(i)">📄 Exportar como PDF</button>
+    <hr />
   </div>
 </div>
 
