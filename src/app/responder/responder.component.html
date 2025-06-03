@@ -1,38 +1,36 @@
-<div *ngIf="encuesta; else noExiste">
-  <h2>{{ encuesta.pregunta }}</h2>
+<div *ngIf="encuesta; else noExiste" class="contenedor-respuesta">
+  <h2>Responder Encuesta</h2>
 
-  <ng-container [ngSwitch]="encuesta.tipo">
-    <div *ngSwitchCase="'abierta'">
-      <textarea [(ngModel)]="respuesta" rows="4" cols="50"></textarea>
+  <form (ngSubmit)="enviarRespuesta()">
+    <div *ngFor="let pregunta of encuesta.preguntas; let i = index" class="bloque-pregunta">
+      <h4>{{ pregunta.texto }}</h4>
+
+      <!-- Abierta -->
+      <div *ngIf="pregunta.tipo === 'abierta'">
+        <textarea [(ngModel)]="respuestas[i]" name="respuesta-{{ i }}" rows="3" placeholder="Escribe tu respuesta..."></textarea>
+      </div>
+
+      <!-- Opción simple -->
+      <div *ngIf="pregunta.tipo === 'opcion-simple'">
+        <label *ngFor="let op of pregunta.opciones" class="opcion">
+          <input type="radio" [name]="'pregunta-' + i" [value]="op" [(ngModel)]="respuestas[i]" />
+          {{ op }}
+        </label>
+      </div>
+
+      <!-- Opción múltiple -->
+      <div *ngIf="pregunta.tipo === 'opcion-multiple'">
+        <label *ngFor="let op of pregunta.opciones" class="opcion">
+          <input type="checkbox" [value]="op" (change)="onCheckChange($event, i)" />
+          {{ op }}
+        </label>
+      </div>
     </div>
 
-    <div *ngSwitchCase="'opcion-simple'">
-      <label *ngFor="let op of encuesta.opciones">
-        <input
-          type="radio"
-          name="opcion"
-          [value]="op"
-          [(ngModel)]="respuesta"
-        />
-        {{ op }}
-      </label>
-    </div>
-
-    <div *ngSwitchCase="'opcion-multiple'">
-      <label *ngFor="let op of encuesta.opciones">
-        <input
-          type="checkbox"
-          [value]="op"
-          (change)="onCheckChange($event)"
-        />
-        {{ op }}
-      </label>
-    </div>
-  </ng-container>
-
-  <button (click)="enviarRespuesta()">Enviar Respuesta</button>
+    <button type="submit">Enviar Respuestas</button>
+  </form>
 </div>
 
 <ng-template #noExiste>
-  <p>Encuesta no encontrada</p>
+  <p style="color: red;">Encuesta no encontrada</p>
 </ng-template>

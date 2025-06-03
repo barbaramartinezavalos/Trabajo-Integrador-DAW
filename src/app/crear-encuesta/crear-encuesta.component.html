@@ -1,46 +1,74 @@
-
 <div class="formulario">
   <h2>Crear Encuesta</h2>
 
-  <label>Pregunta:</label>
-  <input [(ngModel)]="pregunta" type="text" placeholder="¿Cuál es tu pregunta?" />
+  <div *ngFor="let pregunta of preguntas; let i = index">
+    <input [(ngModel)]="pregunta.texto" placeholder="Escribe la pregunta" />
 
-  <label>Tipo de pregunta:</label>
-  <select [(ngModel)]="tipo">
+    <select [(ngModel)]="pregunta.tipo">
+      <option value="abierta">Abierta</option>
+      <option value="opcion-simple">Opción simple</option>
+      <option value="opcion-multiple">Opción múltiple</option>
+    </select>
+
+    <div *ngIf="pregunta.tipo !== 'abierta'">
+      <div *ngFor="let opcion of pregunta.opciones; let j = index">
+        <input [(ngModel)]="pregunta.opciones[j]" placeholder="Opción" />
+        <button (click)="eliminarOpcion(i, j)">❌</button>
+      </div>
+      <button (click)="agregarOpcion(i)">+ Opción</button>
+    </div>
+
+    <button (click)="eliminarPregunta(i)">Eliminar pregunta</button>
+    <hr />
+  </div>
+
+  <button (click)="agregarPregunta()">+ Agregar pregunta</button>
+
+  <br /><br />
+  <button class="crear" (click)="crearEncuesta()">Crear Encuesta</button>
+
+  <div *ngIf="idGenerado" class="enlaces">
+    <p><strong>¡Encuesta creada!</strong></p>
+
+    <p>
+      <strong>Responder:</strong><br />
+      <code>http://localhost:4200/responder/{{ idGenerado }}</code>
+      <button (click)="copiarAlPortapapeles('http://localhost:4200/responder/' + idGenerado)">
+        Copiar
+      </button>
+    </p>
+
+    <p>
+      <strong>Estadísticas:</strong><br />
+      <code>http://localhost:4200/estadisticas/{{ idGenerado }}</code>
+      <button (click)="copiarAlPortapapeles('http://localhost:4200/estadisticas/' + idGenerado)">
+        Copiar
+      </button>
+    </p>
+  </div>
+</div>
+
+
+<div *ngFor="let pregunta of preguntas; let i = index">
+  <input [(ngModel)]="pregunta.texto" placeholder="Escribe la pregunta" />
+  
+  <select [(ngModel)]="pregunta.tipo">
     <option value="abierta">Abierta</option>
     <option value="opcion-simple">Opción simple</option>
     <option value="opcion-multiple">Opción múltiple</option>
   </select>
 
-  <div *ngIf="tipo !== 'abierta'">
-    <label>Opciones:</label>
-    <div *ngFor="let opcion of opciones; let i = index" class="opcion">
-      <input [(ngModel)]="opciones[i]" type="text" placeholder="Opción {{ i + 1 }}" />
-      <button type="button" (click)="eliminarOpcion(i)">🗑️</button>
+  <div *ngIf="pregunta.tipo !== 'abierta'">
+    <div *ngFor="let opcion of pregunta.opciones; let j = index">
+      <input [(ngModel)]="pregunta.opciones[j]" placeholder="Opción" />
+      <button (click)="eliminarOpcion(i, j)">❌</button>
     </div>
-    <button class="agregar" (click)="agregarOpcion()">+ Agregar opción</button>
+    <button (click)="agregarOpcion(i)">+ Opción</button>
   </div>
 
-  <button 
-  class="crear" (click)="crearEncuesta()">Crear Encuesta</button>
-        <div *ngIf="idGenerado" class="enlaces">
-  <p><strong>¡Encuesta creada!</strong></p>
-
-  <p>
-     <strong>Responder:</strong><br />
-    <code>http://localhost:4200/responder/{{ idGenerado }}</code>
-    <button (click)="copiarAlPortapapeles('http://localhost:4200/responder/' + idGenerado)">
-       Copiar
-    </button>
-  </p>
-
-  <p>
-     <strong>Estadísticas:</strong><br />
-    <code>http://localhost:4200/estadisticas/{{ idGenerado }}</code>
-    <button (click)="copiarAlPortapapeles('http://localhost:4200/estadisticas/' + idGenerado)">
-       Copiar
-    </button>
-  </p>
+  <button (click)="eliminarPregunta(i)">Eliminar pregunta</button>
+  <hr />
 </div>
 
-</div>
+<button (click)="agregarPregunta()">+ Agregar pregunta</button>
+

@@ -10,7 +10,7 @@ import { EncuestaService } from '../servicios/encuesta.service';
 })
 export class ResponderComponent implements OnInit {
   encuesta: any;
-  respuesta: any = '';
+  respuestas: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +21,22 @@ export class ResponderComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.encuesta = this.encuestaService.obtenerEncuesta(id);
+      this.respuestas = new Array(this.encuesta?.preguntas?.length || 0).fill('');
+    }
+  }
+
+  onCheckChange(event: any, index: number) {
+    if (!Array.isArray(this.respuestas[index])) {
+      this.respuestas[index] = [];
+    }
+
+    const value = event.target.value;
+    const checked = event.target.checked;
+
+    if (checked) {
+      this.respuestas[index].push(value);
+    } else {
+      this.respuestas[index] = this.respuestas[index].filter((v: any) => v !== value);
     }
   }
 
@@ -30,24 +46,9 @@ export class ResponderComponent implements OnInit {
       return;
     }
 
-    this.encuestaService.responderEncuesta(this.encuesta.id, this.respuesta);
-    console.log('Respuesta enviada:', this.respuesta);
-    alert('¡Respuesta registrada!');
-    this.respuesta = '';
-  }
-
-  onCheckChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const value = input.value;
-
-    if (!Array.isArray(this.respuesta)) {
-      this.respuesta = [];
-    }
-
-    if (input.checked) {
-      this.respuesta.push(value);
-    } else {
-      this.respuesta = this.respuesta.filter((v: any) => v !== value);
-    }
+    this.encuestaService.responderEncuesta(this.encuesta.id, this.respuestas);
+    alert('¡Respuestas enviadas con éxito!');
+    this.respuestas = [];
   }
 }
+

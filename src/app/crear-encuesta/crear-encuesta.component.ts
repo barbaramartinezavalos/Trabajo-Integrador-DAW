@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { EncuestaService } from '../servicios/encuesta.service';
 import { Router } from '@angular/router';
 
+interface Pregunta {
+  texto: string;
+  tipo: 'abierta' | 'opcion-simple' | 'opcion-multiple';
+  opciones: string[];
+}
+
 @Component({
   selector: 'app-crear-encuesta',
   standalone: false,
@@ -9,41 +15,50 @@ import { Router } from '@angular/router';
   styleUrl: './crear-encuesta.component.scss'
 })
 export class CrearEncuestaComponent {
-  pregunta: string = '';
-  tipo: 'abierta' | 'opcion-simple' | 'opcion-multiple' = 'opcion-simple';
-  opciones: string[] = [''];
-  idGenerado: string = ''; 
+  preguntas: Pregunta[] = [
+    {
+      texto: '',
+      tipo: 'opcion-simple',
+      opciones: ['']
+    }
+  ];
+
+  idGenerado: string = '';
 
   constructor(
     private encuestaService: EncuestaService,
     private router: Router
   ) {}
 
-  agregarOpcion() {
-    this.opciones.push('');
+  agregarPregunta() {
+    this.preguntas.push({
+      texto: '',
+      tipo: 'opcion-simple',
+      opciones: ['']
+    });
   }
 
-  eliminarOpcion(index: number) {
-    this.opciones.splice(index, 1);
+  eliminarPregunta(index: number) {
+    this.preguntas.splice(index, 1);
   }
 
-    crearEncuesta() {
-  const encuesta = {
-    pregunta: this.pregunta,
-    tipo: this.tipo,
-    opciones: this.tipo === 'abierta' ? [] : this.opciones,
-    fecha: Date.now()
-  };
+  agregarOpcion(pIndex: number) {
+    this.preguntas[pIndex].opciones.push('');
+  }
 
-  const id = this.encuestaService.crearEncuesta(encuesta);
-  this.idGenerado = id;
-}
+  eliminarOpcion(pIndex: number, oIndex: number) {
+    this.preguntas[pIndex].opciones.splice(oIndex, 1);
+  }
 
+  crearEncuesta() {
+    const nuevaEncuesta = {
+      preguntas: this.preguntas,
+      fecha: Date.now()
+    };
 
-  generarId(): string {
-  return Math.random().toString(36).substring(2, 9);
-}
-
+    const id = this.encuestaService.crearEncuesta(nuevaEncuesta);
+    this.idGenerado = id;
+  }
 
   copiarAlPortapapeles(texto: string) {
     navigator.clipboard.writeText(texto).then(() => {
